@@ -1,0 +1,99 @@
+#title{font-family:Pacifico,cursive;font-weight:400}
+@font-face{font-family:Pacifico;src:url(../fonts/Pacifico-Regular.ttf) format("truetype");font-weight:400;font-style:normal;font-display:swap}
+/* 1. Viewport layout. The scene keeps its aspect ratio inside its grid cell. */
+:root{color-scheme:light;--ink:#553841;--rose:#f1c7d4;--paper:#fffaf0;--line:#d7a8ac}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:1rem/1.4 Georgia,"Times New Roman",serif;background:radial-gradient(ellipse at top,#fff8d8,transparent 65%),repeating-linear-gradient(90deg,#f9e6e7 0 22px,#fcecee 22px 44px)}
+main{width:min(100%,1720px);height:100dvh;margin:auto;padding:clamp(6px,1.25vw,20px);display:grid;grid-template-rows:auto minmax(0,1fr);gap:clamp(6px,1.25vw,20px)}
+header,.preferences,.branding,#languages{display:flex;align-items:center;gap:clamp(5px,1vw,16px)}
+header{justify-content:space-between}
+h1{font-size:clamp(1.35rem,2.6vw,2.35rem);font-weight:normal;line-height:1.08;margin:0;text-shadow:2px 2px #fff}
+:lang(vi) body{font-family:system-ui,sans-serif}
+:lang(vi) h1,:lang(vi) h2{font-weight:650}
+#byline{margin:0;font:600 .72rem/1.2 system-ui,sans-serif}
+.playfield{min-width:0;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) clamp(220px,24vw,320px);gap:clamp(8px,1.5vw,24px);align-items:stretch}
+.scene-slot{container-type:size;min-width:0;min-height:0;display:grid;place-items:center}
+.frame{width:min(100cqw,calc(100cqh * 16 / 9));position:relative;border-radius:clamp(8px,1.5vw,24px);outline:2px solid var(--paper);overflow:hidden;background:#f8dfcc;box-shadow:0 8px 20px #744a5530}
+canvas{display:block;width:100%;aspect-ratio:16/9;touch-action:none}
+.rail{display:flex;flex-direction:column;justify-content:center;gap:clamp(5px,1.3vw,18px);min-width:0}
+.panel,.instructions{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(8px,1.3vw,19px);box-shadow:0 4px #d6a0a335}
+.panel{animation:arrive .22s ease-out}
+@keyframes arrive{from{opacity:.7;transform:translateY(3px)}}
+.chapter,#how-title{font:750 .72rem/1.25 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#895364}
+h2{margin:.3em 0;font-size:clamp(1.1rem,2vw,1.65rem);line-height:1.14}
+.panel p{margin:.45em 0 .8em;font-size:clamp(.86rem,1.3vw,1.02rem)}
+.panel p:empty{display:none}
+.actions,.group{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.group{flex-basis:100%;font:700 .76rem system-ui,sans-serif}
+button{font:700 .82rem/1.2 system-ui,sans-serif;color:var(--ink);background:var(--rose);border:1px solid #b77e90;border-radius:17px;padding:6px 10px;min-height:34px;cursor:pointer;box-shadow:0 2px #b77e9050}
+button:hover:not(:disabled){filter:brightness(1.06);transform:translateY(-1px)}
+button:active:not(:disabled){transform:translateY(1px);box-shadow:none}
+button:focus-visible{outline:2px solid #685186;outline-offset:2px}
+button:disabled{opacity:.68;cursor:default}
+button[aria-pressed=true]{box-shadow:inset 0 0 0 1px #805064}
+.soft{background:#f8edcf}.sage{background:#dce6c9}.blue{background:#dbeaf2}
+#hud{position:absolute;inset:6px 5px auto;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;pointer-events:none}
+#hud span{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:2px 7px;font:700 clamp(.62rem,1vw,.83rem)/1.35 system-ui,sans-serif}
+[hidden]{display:none!important}
+.instructions{background:#fff7e7e8}
+#how-title{margin:0 0 6px}
+.instructions ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px 11px;font:600 .78rem/1.35 system-ui,sans-serif}
+.instructions li{display:flex;align-items:center;gap:5px}
+.camera-preview{display:flex;align-items:center;gap:8px;font:700 .75rem/1.3 system-ui,sans-serif}
+.camera-view{position:relative;flex:none;width:clamp(64px,8vw,108px);aspect-ratio:var(--camera-aspect,4/3);overflow:hidden;background:#f1dcd7;border-radius:9px;outline:1px solid var(--line)}
+.camera-view video{display:block;width:100%;height:100%;transform:scaleX(-1)}
+#camera-dot{position:absolute;width:9px;height:9px;border:1px solid #895364;border-radius:50%;background:#fffaf0;transform:translate(-50%,-50%);pointer-events:none}
+#camera-dot[data-pinched=true]{background:#ed9fba;box-shadow:0 0 0 2px #fffaf0}
+.camera-choice{flex-basis:100%;display:grid;justify-items:start;gap:3px}
+.camera-choice small{font-size:.78rem;line-height:1.25}
+.pinch-guide{margin:6px 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;text-align:center}
+.pinch-guide span{font:650 .68rem/1.15 system-ui,sans-serif}
+.pinch-guide svg{display:block;width:100%;height:clamp(29px,5vh,52px)}
+.pinch-guide figcaption{grid-column:1/-1;margin-top:3px;font-size:.77rem;line-height:1.25}
+main[data-phase="cameraSetup"] #instructions{display:none}
+@media(max-height:420px){.pinch-guide{margin:4px 0}.pinch-guide figcaption{margin-top:0}}
+
+#camera-status::before{content:"";display:inline-block;width:7px;height:7px;margin-right:5px;border-radius:50%;background:#c68c95}
+#camera-status[data-tracking=true]::before{background:#557343}
+@media(max-height:420px) and (orientation:landscape){
+  main[data-mode="camera"] .playfield{grid-template-columns:minmax(0,1fr) minmax(250px,46%)}
+  main[data-mode="camera"] .rail{gap:4px}
+  main[data-mode="camera"] .rail>*{padding-block:4px}
+  main[data-mode="camera"] #how-title{margin-bottom:3px}
+  main[data-mode="camera"] .instructions ul{font-size:.72rem;gap:4px}
+  .camera-view{width:56px}
+  main[data-phase="cameraSetup"] .rail{display:contents}
+  main[data-phase="cameraSetup"] .scene-slot{grid-area:1/1}
+  main[data-phase="cameraSetup"] .panel{grid-area:1/2;align-self:center}
+  main[data-phase="cameraSetup"] .panel p{display:none}
+  main[data-phase="cameraSetup"] .camera-preview{
+    grid-area:1/1;align-self:end;justify-self:start;z-index:1;
+    padding:4px 6px;max-width:100%
+  }
+}
+kbd{background:#f8edcf;border:1px solid var(--line);border-radius:5px;padding:2px 5px;font:inherit;text-transform:uppercase}
+#feedback{font-size:.92rem}
+.gift{display:inline-block;color:#895364;font-size:1.5rem;line-height:1;animation:unwrap .55s ease-out both}
+@keyframes unwrap{from{transform:scale(.4) rotate(-20deg)}65%{transform:scale(1.25) rotate(8deg)}}
+@media(max-width:680px) and (orientation:portrait){
+  .playfield{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto}
+  .branding{align-items:flex-start;flex-direction:column;gap:2px}
+  .rail{padding-bottom:3px}
+}
+@media(max-height:500px){
+  main{padding:5px 8px;gap:5px}
+  .panel,.instructions{padding:6px 8px;border-radius:10px}
+  .rail{gap:5px}
+  .panel p{margin:.25em 0 .4em}
+  h2{margin:.12em 0;font-size:1.05rem}
+  button{min-height:28px;padding:3px 7px;font-size:.74rem}
+}
+@media(max-height:420px) and (orientation:landscape){
+  main:not([data-phase="battle"]) #instructions{display:none}
+}
+@media(max-width:365px){
+  #byline{font-size:.63rem}
+  .preferences,#languages{gap:3px}
+  .preferences button{padding-inline:6px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
