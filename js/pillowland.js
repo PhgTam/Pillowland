@@ -1,23 +1,23 @@
 "use strict";
 
 const ARTWORK = {
-  "background": "./assets/images/background.PNG",
-  "blanket-1-color-1": "./assets/images/blanket-1-color-1.PNG",
-  "blanket-1-color-2": "./assets/images/blanket-1-color-2.PNG",
-  "blanket-2-color-1": "./assets/images/blanket-2-color-1.PNG",
-  "blanket-2-color-2": "./assets/images/blanket-2-color-2.PNG",
-  "bunny": "./assets/images/bunny.PNG",
-  "decoration": "./assets/images/decoration.PNG",
-  "fox": "./assets/images/fox.PNG",
-  "main-character": "./assets/images/main-character.PNG",
-  "pillow-1": "./assets/images/pillow-1.PNG",
-  "pillow-2": "./assets/images/pillow-2.PNG",
-  "pillow-3": "./assets/images/pillow-3.PNG",
-  "tiger": "./assets/images/tiger.PNG"
+  "background": "./images/background.PNG",
+  "blanket-1-color-1": "./images/blanket-1-color-1.PNG",
+  "blanket-1-color-2": "./images/blanket-1-color-2.PNG",
+  "blanket-2-color-1": "./images/blanket-2-color-1.PNG",
+  "blanket-2-color-2": "./images/blanket-2-color-2.PNG",
+  "bunny": "./images/bunny.PNG",
+  "decoration": "./images/decoration.PNG",
+  "fox": "./images/fox.PNG",
+  "main-character": "./images/main-character.PNG",
+  "pillow-1": "./images/pillow-1.PNG",
+  "pillow-2": "./images/pillow-2.PNG",
+  "pillow-3": "./images/pillow-3.PNG",
+  "tiger": "./images/tiger.PNG"
 };
 const SOUNDS = {
-  "ambient": "./assets/audio/ambient.mp3",
-  "click": "./assets/audio/mouse-click.mp3"
+  "ambient": "./audio/ambient.mp3",
+  "click": "./audio/mouse-click.mp3"
 };
 /* Interface copy. Each pair is English, then Vietnamese. */
 const COPY={
@@ -411,7 +411,7 @@ const MouseController={
 };
 /* MediaPipe and the FP16 hand model run locally and load only for Camera Mode. */
 async function createCameraLandmarker(signal){
-  const root=new URL("./assets/mediapipe/",document.baseURI);
+  const root=new URL("./mediapipe/",document.baseURI);
   const {FilesetResolver,HandLandmarker}=await import(new URL("js/vision_bundle.mjs",root).href);
   const vision=await FilesetResolver.forVisionTasks(new URL("wasm/",root).href.replace(/\/$/,""));
   const modelAssetPath=new URL("models/hand_landmarker.task",root).href;
