@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pillowland · The Bedroom Club</title>
+<link rel="stylesheet" href="./assets/css/pillowland.css">
+</head>
+<body>
+<main>
+<header>
+  <div class="branding"><h1 id="title">Pillowland</h1><p id="byline">By: Le Hong Phuong Tam</p></div>
+  <div class="preferences">
+    <button id="sound" class="soft" type="button" aria-pressed="false">Sound on</button>
+    <div id="languages" role="group" aria-label="Language">
+      <button class="soft" type="button" lang="en" aria-label="English" aria-pressed="true">EN</button>
+      <button class="soft" type="button" lang="vi" aria-label="Tiếng Việt" aria-pressed="false">VI</button>
+    </div>
+  </div>
+</header>
+<div class="playfield">
+<div class="scene-slot">
+<div class="frame">
+<canvas id="room" width="960" height="540" aria-label="Illustrated Pillowland bedroom"></canvas>
+<div id="hud" hidden><span id="clock"></span><span id="score"></span><span id="lives"></span><span id="opponent"></span></div>
+</div>
+</div>
+<div class="rail">
+  <section class="panel" id="panel" aria-label="Game controls"></section>
+  <section id="camera-preview" class="instructions camera-preview" hidden>
+    <div class="camera-view">
+      <video id="camera-video" muted playsinline></video>
+      <span id="camera-dot" aria-hidden="true" hidden></span>
+    </div>
+    <div id="camera-status" role="status"></div>
+  </section>
+  <aside class="instructions" id="instructions" aria-labelledby="how-title"></aside>
+</div>
+</div>
+</main>
+<script src="./assets/js/pillowland.js" defer></script>
+</body>
+</html>
